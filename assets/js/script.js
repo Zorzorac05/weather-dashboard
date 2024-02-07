@@ -35,8 +35,110 @@ function currentDay(lat,lon){
 }
 
 //function to get the forcast for next 5 days
-function fiveDay(){
+function fiveDay(lat,lon){
+    //fetch request to get the info from the city based on lattitude and longitude
+    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=a1898c475b575c98be9beedc38b6ff98&units=imperial")
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data){
 
+        //incrimenter
+        var x = 1;
+        //fills first forcast card
+        //gets the next day and displays it
+        var d = new Date();
+        var strDate = (d.getMonth()+1) + "/" + (d.getDate()+x) + "/" + d.getFullYear();
+        $("#dateOne").text(strDate);
+        //gets temp of the city and displays it
+        var temp = "Temp: " + data.list[x].main.temp + " °F";
+        $("#tempOne").text(temp);
+        //gets humidity of the city and displays it
+        var humidity = "Humidity: " + data.list[x].main.humidity + "%";
+        $("#humidityOne").text(humidity);
+        //gets wind speed of the city and displays it
+        var wind = "Wind speed: " + data.list[x].wind.speed + "mph";
+        $("#windOne").text(wind);
+        //gets the icon for the weather of the city and displays it
+        var icon = data.list[x].weather[0].icon;
+        var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        $('#iconOne').attr('src', iconurl);
+        x++;
+
+        //fills second forcast card
+        //shows date 2 days out
+        strDate = (d.getMonth()+1) + "/" + (d.getDate()+x) + "/" + d.getFullYear();
+        $("#dateTwo").text(strDate);
+        //gets temp of the city and displays it
+        temp = "Temp: " + data.list[x].main.temp + " °F";
+        $("#tempTwo").text(temp);
+        //gets humidity of the city and displays it
+        humidity = "Humidity: " + data.list[x].main.humidity + "%";
+        $("#humidityTwo").text(humidity);
+        //gets wind speed of the city and displays it
+        wind = "Wind speed: " + data.list[x].wind.speed + "mph";
+        $("#windTwo").text(wind);
+        //gets the icon for the weather of the city and displays it
+        icon = data.list[x].weather[0].icon;
+        iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        $('#iconTwo').attr('src', iconurl);
+        x++;
+
+        //fills out third forcast card
+        //shows date 3 days out
+        strDate = (d.getMonth()+1) + "/" + (d.getDate()+x) + "/" + d.getFullYear();
+        $("#dateThree").text(strDate);
+        //gets temp of the city and displays it
+        temp = "Temp: " + data.list[x].main.temp + " °F";
+        $("#tempThree").text(temp);
+        //gets humidity of the city and displays it
+        humidity = "Humidity: " + data.list[x].main.humidity + "%";
+        $("#humidityThree").text(humidity);
+        //gets wind speed of the city and displays it
+        wind = "Wind speed: " + data.list[x].wind.speed + "mph";
+        $("#windThree").text(wind);
+        //gets the icon for the weather of the city and displays it
+        icon = data.list[x].weather[0].icon;
+        iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        $('#iconThree').attr('src', iconurl);
+        x++;
+
+        //shows date 4 days out
+        strDate = (d.getMonth()+1) + "/" + (d.getDate()+x) + "/" + d.getFullYear();
+        $("#dateFour").text(strDate);
+        //gets temp of the city and displays it
+        temp = "Temp: " + data.list[x].main.temp + " °F";
+        $("#tempFour").text(temp);
+        //gets humidity of the city and displays it
+        humidity = "Humidity: " + data.list[x].main.humidity + "%";
+        $("#humidityFour").text(humidity);
+        //gets wind speed of the city and displays it
+        wind = "Wind speed: " + data.list[x].wind.speed + "mph";
+        $("#windFour").text(wind);
+        //gets the icon for the weather of the city and displays it
+        icon = data.list[x].weather[0].icon;
+        iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        $('#iconFour').attr('src', iconurl);
+        x++;
+
+        //shows date 5 days out
+        strDate = (d.getMonth()+1) + "/" + (d.getDate()+x) + "/" + d.getFullYear();
+        $("#dateFive").text(strDate);
+        //gets temp of the city and displays it
+        temp = "Temp: " + data.list[x].main.temp + " °F";
+        $("#tempFive").text(temp);
+        //gets humidity of the city and displays it
+        humidity = "Humidity: " + data.list[x].main.humidity + "%";
+        $("#humidityFive").text(humidity);
+        //gets wind speed of the city and displays it
+        wind = "Wind speed: " + data.list[x].wind.speed + "mph";
+        $("#windFive").text(wind);
+        //gets the icon for the weather of the city and displays it
+        icon = data.list[x].weather[0].icon;
+        iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+        $('#iconFive').attr('src', iconurl);
+        
+    })
     //5 day needs to show date, icon, temp, wind speed and humidity
 }
 
@@ -55,5 +157,6 @@ $("#searchButton").on("click", function() {
         var lat = data[0].lat;
         var lon = data[0].lon;
         currentDay(lat,lon);
+        fiveDay(lat,lon);
     })
 });

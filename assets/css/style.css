@@ -19,8 +19,15 @@ h1 {
     padding: 10px;
 }
 
-#card {
+.cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
     padding: 5px;
+    margin: 5px;
     background-color: blue;
     color: white;
+    width: 20%;
 }
