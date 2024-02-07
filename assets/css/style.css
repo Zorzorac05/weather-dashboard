@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+    color: white;
+    background-color: blue;
+    padding: 20px;
+}
+
+#city {
+    margin: 10px;
+}
+
+#searchButton {
+    margin: 10px;
+}
+
+#info {
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+}
+
+#card {
+    padding: 5px;
+    background-color: blue;
+    color: white;
+}
