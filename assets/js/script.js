@@ -166,7 +166,7 @@ $("#searchButton").on("click", function() {
     var city = splitInput[0];
     var state = splitInput[1]
     var country = splitInput[3];
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "," + country + "&appid=a1898c475b575c98be9beedc38b6ff98")
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + state + "," + country + "&appid=a1898c475b575c98be9beedc38b6ff98")
     .then(function (response) {
         return response.json();
     })
