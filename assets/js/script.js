@@ -1,6 +1,4 @@
-//"https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=a1898c475b575c98be9beedc38b6ff98"
-//https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + state + "," + country + "&appid=a1898c475b575c98be9beedc38b6ff98
-//geo gets coridnates then need to put into the above one
+
 
 //function to the current weather info of the city then display it
 function currentDay(lat,lon){
@@ -142,6 +140,25 @@ function fiveDay(lat,lon){
     //5 day needs to show date, icon, temp, wind speed and humidity
 }
 
+//function stores info in local storage then updates the history with previously searched results
+function store(storedInfo){
+    localStorage.setItem(storedInfo.city, JSON.stringify(storedInfo));
+}
+
+//this fuction runs on page launch or refresh grabs the citys from local storage and displays them as buttons to click
+function displayHistory(){
+    var history = Object.keys(localStorage)
+    console.log(history);
+    for(var i = 0; i < history.length; i++){
+        //var temp = localStorage.getItem(history[i]);
+        var button = $("<button>");
+        var temp = history[i];
+        button.text(temp);
+        $("#history").append(button);
+    }
+}
+
+displayHistory();
 
 $("#searchButton").on("click", function() {
     var input = $("#location").val();
@@ -156,7 +173,13 @@ $("#searchButton").on("click", function() {
     .then(function (data){
         var lat = data[0].lat;
         var lon = data[0].lon;
+        var storedInfo = {
+            city: city,
+            lat: lat,
+            lon: lon
+        };
         currentDay(lat,lon);
         fiveDay(lat,lon);
+        store(storedInfo);
     })
 });
